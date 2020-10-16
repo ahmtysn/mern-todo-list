@@ -1,0 +1,7 @@
+{
+  "env": {
+    "DB_USER": "hyfuser",
+    "DB_PW": "hyfpassword",
+    "DB_NAME": "mern"
+  }
+}

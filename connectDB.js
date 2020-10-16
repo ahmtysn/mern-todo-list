@@ -14,13 +14,6 @@ const options = {
   useCreateIndex: true,
 };
 
-const options = {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useFindAndModify: false,
-  useCreateIndex: true,
-};
-
 const connectDB = server => {
   mongoose
     .connect(DB_URL, options)

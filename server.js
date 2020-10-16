@@ -7,7 +7,12 @@ const enableCORS = require('./enableCORS');
 const todosRouter = require('./todosRouter.js');
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use(enableCORS);
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
 
 app.use('/todos', todosRouter);
 

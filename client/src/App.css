@@ -7,17 +7,17 @@
 }
 
 body {
-  background: #fdf8f5;
+  background: #f1b24a;
 }
 .todo-app {
   display: flex;
   flex-direction: column;
   justify-content: start;
   width: 520px;
-  min-height: 620px;
+  min-height: 100vh;
   background: linear-gradient(90deg, #164a41, #4d774e);
   text-align: center;
-  margin: 60px auto;
+  margin: auto;
   border-radius: 10px;
   padding-bottom: 32px;
 }

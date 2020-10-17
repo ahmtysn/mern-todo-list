@@ -1,4 +1,3 @@
-const mongoose = require('mongoose');
 const Todo = require('./Todo');
 
 const getAllTodos = async (req, res, next) => {

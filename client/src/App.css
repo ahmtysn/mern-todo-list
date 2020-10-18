@@ -115,6 +115,22 @@ h1 {
   color: #164a41;
 }
 .search {
-  margin-bottom: 10px;
+  margin-bottom: 30px;
   padding: 3px;
+  outline: none;
+  background: transparent;
+  color: #fff;
+  font-weight: bolder;
+}
+.search::placeholder {
+  color: #9dc88d;
+}
+.no-search {
+  background-color: #164a41;
+  color: #f1b24a;
+  font-size: xx-large;
+  font-weight: bolder;
+  width: 80%;
+  margin: 40px auto;
+  padding: 80px;
 }

@@ -14,7 +14,7 @@ function SearchBar({ searchTodos }) {
   return (
     <div>
       <input
-        placeholder='Search is easy now...'
+        placeholder='You can search here'
         value={search}
         onChange={handleChange}
         name='text'

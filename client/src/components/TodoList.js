@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import axios from '../axios';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import SearchBar from './SearchBar';
-import axios from '../axios';
+import NoSearched from './NoSearched';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
+  const [searchValue, setSearchValue] = useState('');
   const [searchedTodos, setSearchedTodos] = useState([]);
 
   useEffect(() => {
@@ -18,14 +20,20 @@ function TodoList() {
         setTodos(todos);
       }
     };
+    if (searchValue) {
+      console.log('ahmet');
+    }
+    console.log({ searchValue });
     getTodos();
-  }, [searchedTodos]);
+  }, [searchedTodos, searchValue]);
 
   // search todos with firs input
   const getSearchedTodos = async todo => {
     const {
       data: { todos },
     } = await axios.get(`/search?q=${todo}`);
+    setSearchValue(todo);
+    console.log({ searchValue });
     setSearchedTodos(todos);
     console.log({ searchedTodos });
   };
@@ -79,12 +87,16 @@ function TodoList() {
       <h1>What's the Plan for Today?</h1>
       <SearchBar searchTodos={getSearchedTodos} />
       <TodoForm onSubmit={addTodo} />
-      <Todo
-        todos={todos}
-        completeTodo={completeTodo}
-        removeTodo={removeTodo}
-        updateTodo={updateTodo}
-      />
+      {searchValue && searchedTodos.length === 0 ? (
+        <NoSearched />
+      ) : (
+        <Todo
+          todos={todos}
+          completeTodo={completeTodo}
+          removeTodo={removeTodo}
+          updateTodo={updateTodo}
+        />
+      )}
     </>
   );
 }

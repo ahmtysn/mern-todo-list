@@ -3,7 +3,7 @@ import axios from '../axios';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
 import SearchBar from './SearchBar';
-import NoSearched from './NoSearched';
+import NotExist from './NotExist';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -20,10 +20,6 @@ function TodoList() {
         setTodos(todos);
       }
     };
-    if (searchValue) {
-      console.log('ahmet');
-    }
-    console.log({ searchValue });
     getTodos();
   }, [searchedTodos, searchValue]);
 
@@ -33,9 +29,8 @@ function TodoList() {
       data: { todos },
     } = await axios.get(`/search?q=${todo}`);
     setSearchValue(todo);
-    console.log({ searchValue });
+
     setSearchedTodos(todos);
-    console.log({ searchedTodos });
   };
 
   const addTodo = async todo => {
@@ -49,6 +44,15 @@ function TodoList() {
     } = await axios.post('/', { text: todo.text });
     // update list
     setTodos(existingTodos => [newTodo, ...existingTodos]);
+  };
+
+  const doImportant = async (id, isImportant) => {
+    const {
+      data: { updatedTodo },
+    } = await axios.patch(`/${id}`, { isImportant: !isImportant });
+    // update the list
+    setTodos(todos => todos.map(item => (item.id === id ? updatedTodo : item)));
+    console.log(todos.filter(todo => todo.id === id));
   };
 
   const updateTodo = async (todoId, todoForUpdate) => {
@@ -80,6 +84,7 @@ function TodoList() {
     } = await axios.patch(`/${id}`, { isComplete: !isComplete });
     // update the list
     setTodos(todos => todos.map(item => (item.id === id ? updatedTodo : item)));
+    console.log(todos.filter(todo => todo.id === id));
   };
 
   return (
@@ -88,13 +93,14 @@ function TodoList() {
       <SearchBar searchTodos={getSearchedTodos} />
       <TodoForm onSubmit={addTodo} />
       {searchValue && searchedTodos.length === 0 ? (
-        <NoSearched />
+        <NotExist />
       ) : (
         <Todo
           todos={todos}
           completeTodo={completeTodo}
           removeTodo={removeTodo}
           updateTodo={updateTodo}
+          doImportant={doImportant}
         />
       )}
     </>

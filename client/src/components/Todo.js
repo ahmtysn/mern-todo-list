@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import TodoForm from './TodoForm';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { TiEdit } from 'react-icons/ti';
+import { BsStar } from 'react-icons/bs';
 
-const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
+const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
   const [edit, setEdit] = useState({
     id: null,
     value: '',
@@ -30,6 +31,10 @@ const Todo = ({ todos, completeTodo, removeTodo, updateTodo }) => {
         {todo.text}
       </div>
       <div className='icons'>
+        <BsStar
+          className={todo.isImportant ? 'star-icon important' : 'star-icon'}
+          onClickCapture={() => doImportant(todo.id, todo.isImportant)}
+        />
         <RiCloseCircleLine
           onClick={() => removeTodo(todo.id)}
           className='delete-icon'

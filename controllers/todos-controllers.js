@@ -39,7 +39,7 @@ const createTodo = async (req, res, next) => {
 };
 
 const updateTodo = async (req, res, next) => {
-  const { text, isComplete } = req.body;
+  const { text, isComplete, isImportant } = req.body;
   const todoId = req.params.id;
 
   let todo;
@@ -53,6 +53,7 @@ const updateTodo = async (req, res, next) => {
 
   if (text) todo.text = text;
   if (typeof isComplete !== 'undefined') todo.isComplete = isComplete;
+  if (typeof isImportant !== 'undefined') todo.isImportant = isImportant;
 
   try {
     await todo.save();

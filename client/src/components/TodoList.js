@@ -77,11 +77,14 @@ function TodoList() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  const completeTodo = async (id, isComplete) => {
+  const completeTodo = async (id, isComplete, isImportant) => {
     // update with the backend
     const {
       data: { updatedTodo },
-    } = await axios.patch(`/${id}`, { isComplete: !isComplete });
+    } = await axios.patch(`/${id}`, {
+      isComplete: !isComplete,
+      isImportant: false,
+    });
     // update the list
     setTodos(todos => todos.map(item => (item.id === id ? updatedTodo : item)));
     console.log(todos.filter(todo => todo.id === id));

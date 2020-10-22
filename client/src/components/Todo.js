@@ -29,8 +29,10 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
     >
       <Checkbox
         checked={todo.isComplete}
-        onChange={() => completeTodo(todo.id, todo.isComplete)}
-        inputProps={{ 'aria-label': 'primary checkbox' }}
+        onChange={() =>
+          completeTodo(todo.id, todo.isComplete, todo.isImportant)
+        }
+        color='default'
       />
       <div
         key={todo.id}
@@ -38,6 +40,7 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
       >
         {todo.text}
       </div>
+
       <div className='icons'>
         <FaStar
           className={todo.isImportant ? 'star-icon important' : 'star-icon'}
@@ -47,7 +50,6 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
           onClick={() => removeTodo(todo.id)}
           className='delete-icon'
         />
-        {/* <TiEdit className='edit-icon' /> */}
       </div>
     </div>
   ));

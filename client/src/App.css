@@ -107,10 +107,24 @@ h1 {
 }
 .star-icon {
   margin-right: 5px;
-  color: #fcf807;
 }
+
 .important {
+  animation: important 0.5s linear both;
+  color: #fcf807;
   font-size: 1.5em;
+}
+
+@keyframes important {
+  0% {
+    transform: scale(1) rotate3d(-1, 1, 0, 0deg);
+  }
+  50% {
+    transform: scale(0.4) rotate3d(-1, 1, 0, -90deg);
+  }
+  100% {
+    transform: scale(1) rotate3d(-1, 1, 0, -180deg);
+  }
 }
 
 .delete-icon {

@@ -9,6 +9,12 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
     id: null,
     value: '',
   });
+  const formSubmit = e => {
+    e.preventDefault();
+    updateTodo(edit.id, { text: edit.value });
+    setEdit({ id: null, value: '' });
+    console.log('deneme');
+  };
 
   return todos.map(todo => (
     <div
@@ -27,11 +33,13 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
         onClick={() => setEdit({ id: todo.id, value: todo.text })}
       >
         {edit.id === todo.id ? (
-          <input
-            value={edit.value}
-            onChange={e => setEdit({ id: todo.id, value: e.target.value })}
-            className='edit-input'
-          />
+          <form onSubmit={formSubmit}>
+            <input
+              value={edit.value}
+              onChange={e => setEdit({ id: todo.id, value: e.target.value })}
+              className='edit-input'
+            />
+          </form>
         ) : (
           todo.text
         )}

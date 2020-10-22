@@ -17,7 +17,7 @@ function TodoList() {
       if (searchedTodos.length) {
         setTodos(searchedTodos);
       } else {
-        setTodos(todos => todos.sort((a, b) => (a.isImportant ? -1 : 1)));
+        setTodos(todos);
       }
     };
     getTodos();

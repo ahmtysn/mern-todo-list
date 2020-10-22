@@ -6,13 +6,11 @@ const {
   getAllTodos,
   createTodo,
   updateTodo,
-  searchTodos,
   deleteTodo,
-} = require('./todos-controllers');
+} = require('../controllers/todos-controllers');
 
 todosRouter.get('/', getAllTodos);
 todosRouter.post('/', createTodo);
-todosRouter.get('/search', searchTodos);
 todosRouter.route('/:id').patch(updateTodo).delete(deleteTodo);
 
 module.exports = todosRouter;

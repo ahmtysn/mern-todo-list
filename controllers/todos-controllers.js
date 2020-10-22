@@ -1,4 +1,4 @@
-const Todo = require('./Todo');
+const Todo = require('../models/Todo');
 
 const getAllTodos = async (req, res, next) => {
   let todos;
@@ -65,20 +65,6 @@ const updateTodo = async (req, res, next) => {
   res.status(200).json({ updatedTodo: todo.toObject({ getters: true }) });
 };
 
-const searchTodos = async (req, res, next) => {
-  let todos;
-  try {
-    todos = await Todo.find({ text: { $regex: req.query.q, $options: 'i' } });
-  } catch (err) {
-    const error = new Error('Fetching todos failed, please try again later.');
-    error.status = 500;
-    return next(error);
-  }
-  res.json({
-    todos: todos.map(todo => todo.toObject({ getters: true })),
-  });
-};
-
 const deleteTodo = async (req, res, next) => {
   const todoId = req.params.id;
 
@@ -98,5 +84,4 @@ const deleteTodo = async (req, res, next) => {
 exports.getAllTodos = getAllTodos;
 exports.createTodo = createTodo;
 exports.updateTodo = updateTodo;
-exports.searchTodos = searchTodos;
 exports.deleteTodo = deleteTodo;

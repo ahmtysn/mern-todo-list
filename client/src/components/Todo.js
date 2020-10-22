@@ -30,6 +30,7 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
           <input
             value={edit.value}
             onChange={e => setEdit({ id: todo.id, value: e.target.value })}
+            className='edit-input'
           />
         ) : (
           todo.text

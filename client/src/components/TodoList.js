@@ -17,7 +17,7 @@ function TodoList() {
       if (searchedTodos.length) {
         setTodos(searchedTodos);
       } else {
-        setTodos(todos);
+        setTodos(todos => todos.sort((a, b) => (a.isImportant ? -1 : 1)));
       }
     };
     getTodos();
@@ -80,13 +80,12 @@ function TodoList() {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
-  const completeTodo = async (id, isComplete, isImportant) => {
+  const completeTodo = async (id, isComplete) => {
     // update with the backend
     const {
       data: { updatedTodo },
     } = await axios.patch(`/${id}`, {
       isComplete: !isComplete,
-      isImportant: false,
     });
     // update the list
     setTodos(todos => todos.map(item => (item.id === id ? updatedTodo : item)));

@@ -53,6 +53,7 @@ const updateTodo = async (req, res, next) => {
 
   if (text) todo.text = text;
   if (typeof isComplete !== 'undefined') todo.isComplete = isComplete;
+  if (isComplete) todo.isImportant = false;
   if (typeof isImportant !== 'undefined') todo.isImportant = isImportant;
 
   try {

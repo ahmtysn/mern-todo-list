@@ -3,7 +3,7 @@ const Todo = require('../models/Todo');
 const getAllTodos = async (req, res, next) => {
   let todos;
   try {
-    todos = await Todo.find();
+    todos = await Todo.find().sort('-isImportant');
   } catch (err) {
     const error = new Error('Something went wrong, could not find todos!');
     error.status = 500;

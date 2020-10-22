@@ -132,6 +132,10 @@ h1 {
   color: #932432;
 }
 
+.success-icon {
+  margin-right: 10px;
+}
+
 .edit-icon {
   color: #164a41;
 }

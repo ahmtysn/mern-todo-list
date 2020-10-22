@@ -51,8 +51,11 @@ function TodoList() {
       data: { updatedTodo },
     } = await axios.patch(`/${id}`, { isImportant: !isImportant });
     // update the list
-    setTodos(todos => todos.map(item => (item.id === id ? updatedTodo : item)));
-    console.log(todos.filter(todo => todo.id === id));
+    setTodos(todos =>
+      todos
+        .map(item => (item.id === id ? updatedTodo : item))
+        .sort((a, b) => (a.isImportant ? -1 : 1)),
+    );
   };
 
   const updateTodo = async (todoId, todoForUpdate) => {

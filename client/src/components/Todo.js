@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TodoForm from './TodoForm';
+import { ImCheckmark } from 'react-icons/im';
 import { RiCloseCircleLine } from 'react-icons/ri';
 import { FaStar } from 'react-icons/fa';
 import Checkbox from '@material-ui/core/Checkbox';
@@ -9,18 +9,6 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
     id: null,
     value: '',
   });
-
-  const submitUpdate = value => {
-    updateTodo(edit.id, value);
-    setEdit({
-      id: null,
-      value: '',
-    });
-  };
-
-  if (edit.id) {
-    return <TodoForm edit={edit} onSubmit={submitUpdate} />;
-  }
 
   return todos.map(todo => (
     <div
@@ -38,17 +26,34 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
         key={todo.id}
         onClick={() => setEdit({ id: todo.id, value: todo.text })}
       >
-        {todo.text}
+        {edit.id === todo.id ? (
+          <input
+            value={edit.value}
+            onChange={e => setEdit({ id: todo.id, value: e.target.value })}
+          />
+        ) : (
+          todo.text
+        )}
       </div>
 
       <div className='icons'>
+        {edit.id !== todo.id ? (
+          <RiCloseCircleLine
+            onClick={() => removeTodo(todo.id)}
+            className='delete-icon'
+          />
+        ) : (
+          <ImCheckmark
+            onClick={() => {
+              updateTodo(todo.id, { text: edit.value });
+              setEdit({ id: null, value: '' });
+            }}
+            className='success-icon'
+          />
+        )}
         <FaStar
           className={todo.isImportant ? 'star-icon important' : 'star-icon'}
           onClickCapture={() => doImportant(todo.id, todo.isImportant)}
-        />
-        <RiCloseCircleLine
-          onClick={() => removeTodo(todo.id)}
-          className='delete-icon'
         />
       </div>
     </div>

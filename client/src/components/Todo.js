@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import TodoForm from './TodoForm';
 import { RiCloseCircleLine } from 'react-icons/ri';
-import { TiEdit } from 'react-icons/ti';
-import { BsStar } from 'react-icons/bs';
+import { FaStar } from 'react-icons/fa';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
   const [edit, setEdit] = useState({
@@ -27,11 +27,19 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
       className={todo.isComplete ? 'todo-row complete' : 'todo-row'}
       key={todo.id}
     >
-      <div key={todo.id} onClick={() => completeTodo(todo.id, todo.isComplete)}>
+      <Checkbox
+        checked={todo.isComplete}
+        onChange={() => completeTodo(todo.id, todo.isComplete)}
+        inputProps={{ 'aria-label': 'primary checkbox' }}
+      />
+      <div
+        key={todo.id}
+        onClick={() => setEdit({ id: todo.id, value: todo.text })}
+      >
         {todo.text}
       </div>
       <div className='icons'>
-        <BsStar
+        <FaStar
           className={todo.isImportant ? 'star-icon important' : 'star-icon'}
           onClickCapture={() => doImportant(todo.id, todo.isImportant)}
         />
@@ -39,10 +47,7 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
           onClick={() => removeTodo(todo.id)}
           className='delete-icon'
         />
-        <TiEdit
-          onClick={() => setEdit({ id: todo.id, value: todo.text })}
-          className='edit-icon'
-        />
+        {/* <TiEdit className='edit-icon' /> */}
       </div>
     </div>
   ));

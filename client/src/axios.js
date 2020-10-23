@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default axios.create({
-  baseURL: 'http://localhost:5000/todos',
+  baseURL: 'https://mernstacktodolist.herokuapp.com/todos',
 });
 
 // herokuURL = https://mernstacktodolist.herokuapp.com/todos

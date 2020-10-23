@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export default axios.create({
-  baseURL: 'http://localhost:5000/todos',
-});
+const herokuURL = 'https://mernstacktodolist.herokuapp.com/todos';
+// const githubURL = 'http://localhost:5000/todos';
 
-// herokuURL = https://mernstacktodolist.herokuapp.com/todos
-// githubURL = http://localhost:5000/todos
+export default axios.create({
+  baseURL: herokuURL,
+});

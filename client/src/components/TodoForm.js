@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import TextField from '@material-ui/core/TextField';
 
 function TodoForm(props) {
   const [input, setInput] = useState('');
@@ -18,8 +19,8 @@ function TodoForm(props) {
 
   return (
     <form onSubmit={handleSubmit} className='todo-form'>
-      <input
-        placeholder='Add a todo'
+      <TextField
+        placeholder='What will you do ?'
         value={input}
         onChange={handleChange}
         name='text'

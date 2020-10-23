@@ -4,6 +4,7 @@ import TodoForm from './TodoForm';
 import Todo from './Todo';
 import HeaderSearch from './HeaderSearch';
 import NotExist from './NotExist';
+import Grid from '@material-ui/core/Grid';
 
 function TodoList() {
   const [todos, setTodos] = useState([]);
@@ -93,21 +94,27 @@ function TodoList() {
   };
 
   return (
-    <>
-      <HeaderSearch searchTodos={getSearchedTodos} />
-      <TodoForm onSubmit={addTodo} />
-      {searchValue && searchedTodos.length === 0 ? (
-        <NotExist />
-      ) : (
-        <Todo
-          todos={todos}
-          completeTodo={completeTodo}
-          removeTodo={removeTodo}
-          updateTodo={updateTodo}
-          doImportant={doImportant}
-        />
-      )}
-    </>
+    <Grid container>
+      <Grid item xs={12}>
+        <HeaderSearch searchTodos={getSearchedTodos} />
+      </Grid>
+      <Grid item xs={12} justify='center'>
+        <TodoForm onSubmit={addTodo} />
+      </Grid>
+      <Grid item xs={12}>
+        {(searchValue && searchedTodos.length === 0) || todos.length === 0 ? (
+          <NotExist />
+        ) : (
+          <Todo
+            todos={todos}
+            completeTodo={completeTodo}
+            removeTodo={removeTodo}
+            updateTodo={updateTodo}
+            doImportant={doImportant}
+          />
+        )}
+      </Grid>
+    </Grid>
   );
 }
 

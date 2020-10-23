@@ -57,7 +57,7 @@ const Todo = ({ todos, completeTodo, doImportant, updateTodo, removeTodo }) => {
               updateTodo(todo.id, { text: edit.value });
               setEdit({ id: null, value: '' });
             }}
-            className='success-icon'
+            className='edit-icon'
           />
         )}
         <FaStar

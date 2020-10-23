@@ -101,6 +101,7 @@ function TodoList() {
       <Grid item xs={12} justify='center'>
         <TodoForm onSubmit={addTodo} />
       </Grid>
+
       <Grid item xs={12}>
         {(searchValue && searchedTodos.length === 0) || todos.length === 0 ? (
           <NotExist />

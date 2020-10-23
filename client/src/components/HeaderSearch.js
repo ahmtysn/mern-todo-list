@@ -24,6 +24,7 @@ function HeaderSearch({ searchTodos }) {
           value={search}
           onChange={handleChange}
           name='text'
+          className='todo-input'
         />
       </Grid>
     </Grid>

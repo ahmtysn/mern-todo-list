@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from '../axios';
 import TodoForm from './TodoForm';
 import Todo from './Todo';
-import SearchBar from './SearchBar';
+import HeaderSearch from './HeaderSearch';
 import NotExist from './NotExist';
 
 function TodoList() {
@@ -94,8 +94,7 @@ function TodoList() {
 
   return (
     <>
-      <h1>What's the Plan for Today?</h1>
-      <SearchBar searchTodos={getSearchedTodos} />
+      <HeaderSearch searchTodos={getSearchedTodos} />
       <TodoForm onSubmit={addTodo} />
       {searchValue && searchedTodos.length === 0 ? (
         <NotExist />

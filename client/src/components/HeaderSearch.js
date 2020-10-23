@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-function SearchBar({ searchTodos }) {
+function HeaderSearch({ searchTodos }) {
   const [search, setSearch] = useState('');
 
   const handleChange = e => {
@@ -13,6 +13,7 @@ function SearchBar({ searchTodos }) {
 
   return (
     <div>
+      <h1>What is your plan?</h1>
       <input
         placeholder='You can search here'
         value={search}
@@ -24,4 +25,4 @@ function SearchBar({ searchTodos }) {
   );
 }
 
-export default SearchBar;
+export default HeaderSearch;

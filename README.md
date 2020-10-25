@@ -37,8 +37,9 @@ To get started you can simply clone the repo and install the dependencies in the
 <img src = "images/todo1.png" />
 <img src = "images/todo2.png" />
 <img src = "images/todo3.png" />
+<img src = "images/todo4.png" />
 
-<h3>File tree</h3>
+<h2>File tree</h2>
 
 ```
 ├── client
